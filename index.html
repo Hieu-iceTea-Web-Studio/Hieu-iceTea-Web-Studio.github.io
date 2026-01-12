@@ -192,14 +192,15 @@
       <!-- Mobile Menu Button -->
       <div class="md:hidden flex items-center">
         <button id="mobile-menu-btn" class="text-gray-600 hover:text-brand-600 focus:outline-none">
-          <i class="fa-solid fa-bars text-2xl"></i>
+          <i class="fa-solid fa-bars text-2xl transition-all" id="mobile-menu-btn-icon"></i>
         </button>
       </div>
     </div>
   </div>
 
   <!-- Mobile Menu Panel -->
-  <div id="mobile-menu" class="hidden md:hidden bg-white border-t border-gray-100 absolute w-full shadow-lg">
+  <div id="mobile-menu"
+       class="invisible opacity-0 -translate-y-2 scale-95 md:hidden bg-white border-t border-gray-100 absolute w-full shadow-lg transition-all duration-200 ease-in-out">
     <div class="px-4 pt-2 pb-4 space-y-1">
       <a href="#ve-chung-toi"
          class="block px-3 py-3 text-base font-medium text-gray-700 hover:text-brand-600 hover:bg-brand-50 rounded-md">Về
@@ -541,16 +542,21 @@
 <script>
     // Mobile Menu Toggle
     const btn = document.getElementById('mobile-menu-btn');
+    const btnIcon = document.getElementById('mobile-menu-btn-icon');
     const menu = document.getElementById('mobile-menu');
 
+    const hiddenClasses = ['invisible', 'opacity-0', '-translate-y-2', 'scale-95'];
+    const btnIconClasses = ['rotate-90', 'fa-bars', 'fa-xmark']; // thay đổi icon và tạo hiệu ứng xoay icon
+
     btn.addEventListener('click', () => {
-        menu.classList.toggle('hidden');
+        hiddenClasses.forEach(cls => menu.classList.toggle(cls));
+        btnIconClasses.forEach(cls => btnIcon.classList.toggle(cls));
     });
 
     // Close mobile menu when clicking a link
     menu.querySelectorAll('a').forEach(link => {
         link.addEventListener('click', () => {
-            menu.classList.add('hidden');
+            hiddenClasses.forEach(cls => menu.classList.add(cls));
         });
     });
 
