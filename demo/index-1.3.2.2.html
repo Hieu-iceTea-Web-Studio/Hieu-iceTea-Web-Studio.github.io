@@ -1,0 +1,544 @@
+<!DOCTYPE html>
+<html lang="vi" class="scroll-smooth">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+
+  <!-- =========================================================================
+       PHẦN 1: CẤU HÌNH SEO WEB (SEO META TAGS)
+       (Giữ nguyên như bản 1.3.2)
+  ========================================================================== -->
+
+  <title>Hiếu iceTea Web Studio - Thiết Kế Web Tĩnh & Landing Page Tốc Độ Cao</title>
+  <meta name="description"
+        content="Dịch vụ thiết kế Landing Page, Website Tĩnh (Static Web) tối ưu tốc độ, chuẩn SEO và One-Page Portfolio chuyên nghiệp cho cá nhân & SMEs.">
+  <meta name="keywords"
+        content="thiết kế web tĩnh, landing page, web portfolio, hieu icetea, web studio, thiết kế web đà nẵng, web tốc độ cao">
+  <meta name="author" content="Hiếu iceTea">
+
+  <meta name="robots" content="index, follow">
+  <link rel="canonical" href="https://web.hieu-icetea.com/">
+
+  <meta property="og:type" content="website">
+  <meta property="og:url" content="https://web.hieu-icetea.com/">
+  <meta property="og:title" content="Hiếu iceTea Web Studio - Giải Pháp Web Tĩnh Tối Ưu">
+  <meta property="og:description"
+        content="Biến ý tưởng thành trải nghiệm số mượt mà. Web tải nhanh, bảo mật, chi phí thấp.">
+  <meta property="og:image"
+        content="https://images.unsplash.com/photo-1498050108023-c5249f4df085?ixlib=rb-4.0.3&auto=format&fit=crop&w=1200&q=80">
+
+  <meta name="twitter:card" content="summary_large_image">
+  <meta name="twitter:url" content="https://web.hieu-icetea.com/">
+  <meta name="twitter:title" content="Hiếu iceTea Web Studio">
+  <meta name="twitter:description" content="Chuyên Landing Page và Web Tĩnh tốc độ cao.">
+  <meta name="twitter:image"
+        content="https://images.unsplash.com/photo-1498050108023-c5249f4df085?ixlib=rb-4.0.3&auto=format&fit=crop&w=1200&q=80">
+
+  <link rel="icon" type="image/png" href="https://cdn-icons-png.flaticon.com/512/2838/2838912.png">
+
+  <script type="application/ld+json">
+    {
+      "@context": "https://schema.org",
+      "@type": "ProfessionalService",
+      "name": "Hiếu iceTea Web Studio",
+      "image": "https://images.unsplash.com/photo-1498050108023-c5249f4df085",
+      "@id": "https://web.hieu-icetea.com/#website",
+      "url": "https://web.hieu-icetea.com/",
+      "telephone": "+84999999999",
+      "priceRange": "$$",
+      "address": {
+        "@type": "PostalAddress",
+        "streetAddress": "Digital Space",
+        "addressLocality": "Vietnam",
+        "addressCountry": "VN"
+      },
+      "description": "Chuyên thiết kế Landing Page, Website Tĩnh tối ưu tốc độ và One-Page Portfolio.",
+      "sameAs": [
+        "https://facebook.com/hieuicetea",
+        "https://github.com/hieuicetea"
+      ]
+    }
+  </script>
+
+  <!-- =========================================================================
+       PHẦN 2: RESOURCE & STYLE
+  ========================================================================== -->
+
+  <!-- [NEW] Alpine.js: Thêm vào để xử lý Logic & Animation thay cho JS thuần -->
+  <script src="https://cdn.jsdelivr.net/npm/alpinejs@3.14.1/dist/cdn.min.js"></script>
+
+  <!-- Google Fonts -->
+  <link rel="preconnect" href="https://fonts.googleapis.com">
+  <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+  <link href="https://fonts.googleapis.com/css2?family=Inter:wght@300;400;500;600;700&display=swap" rel="stylesheet">
+
+  <!-- Tailwind CSS -->
+  <script src="https://cdn.tailwindcss.com"></script>
+
+  <!-- FontAwesome Icons -->
+  <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.4.0/css/all.min.css">
+
+  <!-- Config Tailwind Theme Colors -->
+  <script>
+      tailwind.config = {
+          theme: {
+              extend: {
+                  colors: {
+                      brand: {
+                          50: '#f0f9ff',
+                          100: '#e0f2fe',
+                          200: '#bae6fd',
+                          500: '#0ea5e9',
+                          600: '#0284c7',
+                          900: '#0c4a6e',
+                      },
+                      dark: '#1e1e1e',
+                      light: '#f8f9fa'
+                  },
+                  fontFamily: {
+                      sans: ['Inter', 'sans-serif'],
+                  }
+              }
+          }
+      }
+  </script>
+
+  <style>
+      ::-webkit-scrollbar {
+          width: 8px;
+      }
+
+      ::-webkit-scrollbar-track {
+          background: #f1f1f1;
+      }
+
+      ::-webkit-scrollbar-thumb {
+          background: #0ea5e9;
+          border-radius: 4px;
+      }
+
+      ::-webkit-scrollbar-thumb:hover {
+          background: #0284c7;
+      }
+
+      .blob {
+          position: absolute;
+          filter: blur(40px);
+          z-index: -1;
+          opacity: 0.4;
+          animation: move 10s infinite alternate;
+      }
+
+      @keyframes move {
+          from {
+              transform: translate(0, 0) scale(1);
+          }
+          to {
+              transform: translate(20px, -20px) scale(1.1);
+          }
+      }
+
+      /* Ẩn thanh cuộn khi mobile menu mở để tránh cuộn trang nền (Optional) */
+      body.overflow-hidden {
+          overflow: hidden;
+      }
+  </style>
+</head>
+<body class="font-sans text-gray-800 bg-white antialiased">
+
+<!-- NAVIGATION (Refactored with Alpine.js) -->
+<!-- x-data: Khởi tạo state cho Navbar -->
+<nav x-data="{ isScrolled: false, mobileOpen: false }"
+     @scroll.window="isScrolled = (window.pageYOffset > 20)"
+     :class="isScrolled ? 'bg-white/95 shadow-md' : 'bg-white/90'"
+     class="fixed w-full z-50 backdrop-blur-md border-b border-gray-100 transition-all duration-300">
+
+  <div class="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8">
+    <div class="flex justify-between items-center h-20">
+
+      <!-- Logo -->
+      <div class="flex-shrink-0 flex items-center gap-2 cursor-pointer" onclick="window.scrollTo(0,0)">
+        <div
+            class="w-10 h-10 bg-brand-500 rounded-lg flex items-center justify-center text-white font-bold text-xl shadow-lg transform -rotate-3 hover:rotate-0 transition-all">
+          H
+        </div>
+        <div class="flex flex-col">
+          <span class="font-bold text-xl tracking-tight text-gray-900 leading-none">Hiếu iceTea</span>
+          <span class="text-xs font-semibold text-brand-600 tracking-widest uppercase">Web Studio</span>
+        </div>
+      </div>
+
+      <!-- Desktop Menu (Giữ nguyên) -->
+      <div class="hidden md:flex space-x-8 items-center">
+        <a href="#ve-chung-toi" class="text-gray-600 hover:text-brand-600 font-medium transition-colors">Về Studio</a>
+        <a href="#dich-vu" class="text-gray-600 hover:text-brand-600 font-medium transition-colors">Dịch vụ</a>
+        <a href="#quy-trinh" class="text-gray-600 hover:text-brand-600 font-medium transition-colors">Quy trình</a>
+        <a href="#lien-he"
+           class="bg-brand-500 hover:bg-brand-600 text-white px-5 py-2.5 rounded-full font-medium shadow-md hover:shadow-lg transition-all transform hover:-translate-y-0.5">
+          <i class="fa-solid fa-paper-plane mr-2"></i>Liên hệ ngay
+        </a>
+      </div>
+
+      <!-- Mobile Menu Button & Wrapper -->
+      <div class="md:hidden flex items-center">
+        <!-- Button Toggle -->
+        <button @click="mobileOpen = !mobileOpen"
+                class="text-gray-600 hover:text-brand-600 focus:outline-none p-2 relative z-50">
+          <!-- Icon thay đổi dựa trên state mobileOpen -->
+          <i class="fa-solid text-2xl transition-all duration-300 transform"
+             :class="mobileOpen ? 'fa-xmark rotate-90' : 'fa-bars rotate-0'"></i>
+        </button>
+
+        <!-- Mobile Menu Panel (Alpine Transition) -->
+        <div x-show="mobileOpen"
+             @click.outside="mobileOpen = false"
+             style="display: none;"
+             x-transition:enter="transition ease-out duration-200"
+             x-transition:enter-start="opacity-0 -translate-y-2 scale-95"
+             x-transition:enter-end="opacity-100 translate-y-0 scale-100"
+             x-transition:leave="transition ease-in duration-150"
+             x-transition:leave-start="opacity-100 translate-y-0 scale-100"
+             x-transition:leave-end="opacity-0 -translate-y-2 scale-95"
+             class="absolute top-20 left-0 w-full bg-white border-t border-gray-100 shadow-xl z-40 origin-top">
+
+          <div class="px-4 pt-2 pb-4 space-y-1">
+            <a href="#ve-chung-toi" @click="mobileOpen = false"
+               class="block px-3 py-3 text-base font-medium text-gray-700 hover:text-brand-600 hover:bg-brand-50 rounded-md transition-colors">Về
+              Studio</a>
+            <a href="#dich-vu" @click="mobileOpen = false"
+               class="block px-3 py-3 text-base font-medium text-gray-700 hover:text-brand-600 hover:bg-brand-50 rounded-md transition-colors">Dịch
+              vụ</a>
+            <a href="#quy-trinh" @click="mobileOpen = false"
+               class="block px-3 py-3 text-base font-medium text-gray-700 hover:text-brand-600 hover:bg-brand-50 rounded-md transition-colors">Quy
+              trình</a>
+            <a href="#lien-he" @click="mobileOpen = false"
+               class="block px-3 py-3 text-base font-medium text-brand-600 font-bold hover:bg-brand-50 rounded-md transition-colors">Liên
+              hệ ngay</a>
+          </div>
+        </div>
+      </div>
+    </div>
+  </div>
+</nav>
+
+<!-- HERO SECTION -->
+<section class="relative pt-32 pb-20 lg:pt-48 lg:pb-32 overflow-hidden">
+  <!-- Background Blobs -->
+  <div class="blob bg-brand-200 w-96 h-96 rounded-full top-0 left-0 -translate-x-1/2 -translate-y-1/2"></div>
+  <div class="blob bg-purple-100 w-80 h-80 rounded-full bottom-0 right-0 translate-x-1/3 translate-y-1/3"></div>
+
+  <div class="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8 relative z-10 text-center">
+            <span
+                class="inline-block py-1 px-3 rounded-full bg-brand-100 text-brand-800 text-sm font-semibold mb-6 animate-pulse">
+                🚀 Chuyên Web Tĩnh & Landing Page Tối Ưu
+            </span>
+    <h1 class="text-4xl md:text-6xl font-extrabold text-gray-900 tracking-tight mb-6 leading-tight">
+      Biến Ý Tưởng Thành <br>
+      <span
+          class="text-transparent bg-clip-text bg-gradient-to-r from-brand-500 to-brand-600">Trải Nghiệm Số Mượt Mà</span>
+    </h1>
+    <p class="mt-4 max-w-2xl mx-auto text-xl text-gray-500 mb-10">
+      Tại <strong>Hiếu iceTea Web Studio</strong>, chúng tôi tạo ra những website không chỉ đẹp mà còn "mát lạnh" về tốc
+      độ. Giải pháp hoàn hảo cho cá nhân và doanh nghiệp SMEs.
+    </p>
+    <div class="flex justify-center gap-4">
+      <a href="#dich-vu"
+         class="bg-brand-500 text-white px-8 py-4 rounded-full font-bold shadow-lg hover:bg-brand-600 transition-all hover:shadow-brand-500/30 transform hover:-translate-y-1">
+        Xem Dịch Vụ
+      </a>
+      <a href="#portfolio"
+         class="bg-white text-gray-700 border border-gray-200 px-8 py-4 rounded-full font-bold hover:border-brand-500 hover:text-brand-600 transition-all">
+        Dự Án Mẫu
+      </a>
+    </div>
+
+    <!-- Tech Stack Icons -->
+    <div
+        class="mt-12 pt-8 border-t border-gray-100 flex justify-center gap-8 text-gray-300 grayscale opacity-60 hover:grayscale-0 transition-all duration-500">
+      <i class="fab fa-html5 text-4xl hover:text-orange-500" title="HTML5"></i>
+      <i class="fab fa-css3-alt text-4xl hover:text-blue-500" title="CSS3"></i>
+      <i class="fab fa-js text-4xl hover:text-yellow-400" title="JavaScript"></i>
+      <i class="fab fa-bootstrap text-4xl hover:text-purple-600" title="Bootstrap/Tailwind"></i>
+    </div>
+  </div>
+</section>
+
+<!-- ABOUT SECTION -->
+<section id="ve-chung-toi" class="py-20 bg-gray-50">
+  <div class="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8">
+    <div class="lg:grid lg:grid-cols-2 lg:gap-16 items-center">
+      <div class="mb-10 lg:mb-0">
+        <div class="relative">
+          <div class="absolute -inset-4 bg-brand-200 rounded-2xl transform rotate-2"></div>
+          <img
+              src="https://images.unsplash.com/photo-1498050108023-c5249f4df085?ixlib=rb-4.0.3&auto=format&fit=crop&w=1472&q=80"
+              alt="Coding Workspace" class="relative rounded-2xl shadow-xl w-full object-cover h-80 lg:h-auto">
+        </div>
+      </div>
+      <div>
+        <h2 class="text-brand-600 font-bold uppercase tracking-wide text-sm mb-2">Về Hiếu iceTea</h2>
+        <h3 class="text-3xl font-bold text-gray-900 mb-6">Đơn giản hóa thế giới số của bạn</h3>
+        <p class="text-gray-600 text-lg mb-6 leading-relaxed">
+          Chào bạn, tôi là <strong>Hiếu iceTea</strong>. Với niềm đam mê công nghệ và tư duy thẩm mỹ tối giản, tôi thành
+          lập <strong>Web Studio</strong> này để giúp các cá nhân và doanh nghiệp sở hữu những website chất lượng cao.
+        </p>
+        <ul class="space-y-4">
+          <li class="flex items-start">
+            <div
+                class="flex-shrink-0 h-6 w-6 rounded-full bg-brand-100 flex items-center justify-center text-brand-600 mt-1">
+              <i class="fa-solid fa-check text-xs"></i>
+            </div>
+            <p class="ml-4 text-gray-600"><strong>Tốc độ là số 1:</strong> Web tĩnh tải nhanh như cách bạn uống một ngụm
+              trà đá ngày hè.</p>
+          </li>
+          <li class="flex items-start">
+            <div
+                class="flex-shrink-0 h-6 w-6 rounded-full bg-brand-100 flex items-center justify-center text-brand-600 mt-1">
+              <i class="fa-solid fa-check text-xs"></i>
+            </div>
+            <p class="ml-4 text-gray-600"><strong>Chi phí tối ưu:</strong> Không tốn kém bảo trì server phức tạp.</p>
+          </li>
+          <li class="flex items-start">
+            <div
+                class="flex-shrink-0 h-6 w-6 rounded-full bg-brand-100 flex items-center justify-center text-brand-600 mt-1">
+              <i class="fa-solid fa-check text-xs"></i>
+            </div>
+            <p class="ml-4 text-gray-600"><strong>Bảo mật tuyệt đối:</strong> Giảm thiểu rủi ro bị tấn công so với các
+              mã nguồn mở.</p>
+          </li>
+        </ul>
+      </div>
+    </div>
+  </div>
+</section>
+
+<!-- SERVICES SECTION -->
+<section id="dich-vu" class="py-20 bg-white">
+  <div class="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8">
+    <div class="text-center mb-16">
+      <h2 class="text-brand-600 font-bold uppercase tracking-wide text-sm mb-2">Dịch vụ cung cấp</h2>
+      <h3 class="text-3xl md:text-4xl font-bold text-gray-900">Giải pháp phù hợp với nhu cầu của bạn</h3>
+    </div>
+
+    <div class="grid md:grid-cols-3 gap-8">
+      <!-- Service 1 -->
+      <div
+          class="bg-white rounded-2xl p-8 shadow-lg border border-gray-100 hover:border-brand-300 hover:shadow-xl transition-all group">
+        <div
+            class="w-14 h-14 bg-brand-100 text-brand-600 rounded-xl flex items-center justify-center text-2xl mb-6 group-hover:bg-brand-500 group-hover:text-white transition-colors">
+          <i class="fa-solid fa-rocket"></i>
+        </div>
+        <h4 class="text-xl font-bold text-gray-900 mb-3">Landing Page Bán Hàng</h4>
+        <p class="text-gray-600 mb-4">Trang đích tập trung chuyển đổi (Sales Page) với giao diện thu hút, tối ưu trải
+          nghiệm người dùng để chốt đơn hàng nhanh chóng.</p>
+        <ul class="text-sm text-gray-500 space-y-2 mb-6">
+          <li><i class="fa-solid fa-circle-check text-brand-500 mr-2"></i>Thiết kế chuẩn UX/UI</li>
+          <li><i class="fa-solid fa-circle-check text-brand-500 mr-2"></i>Tối ưu Mobile First</li>
+          <li><i class="fa-solid fa-circle-check text-brand-500 mr-2"></i>Tích hợp Form/Chat</li>
+        </ul>
+      </div>
+
+      <!-- Service 2 -->
+      <div
+          class="bg-white rounded-2xl p-8 shadow-lg border border-gray-100 hover:border-brand-300 hover:shadow-xl transition-all group relative overflow-hidden">
+        <div class="absolute top-0 right-0 bg-brand-500 text-white text-xs font-bold px-3 py-1 rounded-bl-lg">Phổ biến
+        </div>
+        <div
+            class="w-14 h-14 bg-indigo-100 text-indigo-600 rounded-xl flex items-center justify-center text-2xl mb-6 group-hover:bg-indigo-600 group-hover:text-white transition-colors">
+          <i class="fa-solid fa-id-card"></i>
+        </div>
+        <h4 class="text-xl font-bold text-gray-900 mb-3">One-Page Portfolio</h4>
+        <p class="text-gray-600 mb-4">Website cá nhân dạng "tất cả trong một". Nơi bạn giới thiệu bản thân, kỹ năng và
+          dự án để gây ấn tượng với nhà tuyển dụng.</p>
+        <ul class="text-sm text-gray-500 space-y-2 mb-6">
+          <li><i class="fa-solid fa-circle-check text-indigo-500 mr-2"></i>Thể hiện cá tính riêng</li>
+          <li><i class="fa-solid fa-circle-check text-indigo-500 mr-2"></i>Tích hợp Bio Link</li>
+          <li><i class="fa-solid fa-circle-check text-indigo-500 mr-2"></i>Chuyên nghiệp hóa CV</li>
+        </ul>
+      </div>
+
+      <!-- Service 3 -->
+      <div
+          class="bg-white rounded-2xl p-8 shadow-lg border border-gray-100 hover:border-brand-300 hover:shadow-xl transition-all group">
+        <div
+            class="w-14 h-14 bg-emerald-100 text-emerald-600 rounded-xl flex items-center justify-center text-2xl mb-6 group-hover:bg-emerald-600 group-hover:text-white transition-colors">
+          <i class="fa-solid fa-laptop-code"></i>
+        </div>
+        <h4 class="text-xl font-bold text-gray-900 mb-3">Web Tĩnh Doanh Nghiệp</h4>
+        <p class="text-gray-600 mb-4">Website giới thiệu công ty nhẹ nhàng, không cần hệ quản trị phức tạp, bảo mật cao
+          và chi phí vận hành gần như bằng 0.</p>
+        <ul class="text-sm text-gray-500 space-y-2 mb-6">
+          <li><i class="fa-solid fa-circle-check text-emerald-500 mr-2"></i>Siêu tốc độ</li>
+          <li><i class="fa-solid fa-circle-check text-emerald-500 mr-2"></i>Chuẩn SEO cơ bản</li>
+          <li><i class="fa-solid fa-circle-check text-emerald-500 mr-2"></i>Bền vững theo năm tháng</li>
+        </ul>
+      </div>
+    </div>
+
+    <div class="mt-12 text-center">
+      <p class="text-gray-500 italic">"Sắp ra mắt: Dịch vụ phát triển Web App & Phần mềm quản lý."</p>
+    </div>
+  </div>
+</section>
+
+<!-- PROCESS SECTION -->
+<section id="quy-trinh" class="py-20 bg-gray-900 text-white relative overflow-hidden">
+  <!-- Decoration -->
+  <div class="absolute top-0 right-0 -mt-20 -mr-20 w-80 h-80 bg-brand-600 rounded-full opacity-10 blur-3xl"></div>
+
+  <div class="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8 relative z-10">
+    <div class="text-center mb-16">
+      <h2 class="text-brand-400 font-bold uppercase tracking-wide text-sm mb-2">Quy trình làm việc</h2>
+      <h3 class="text-3xl font-bold">Từ Ý Tưởng Đến Sản Phẩm</h3>
+    </div>
+
+    <div class="grid md:grid-cols-4 gap-8">
+      <!-- Step 1 -->
+      <div class="text-center relative">
+        <div
+            class="w-16 h-16 mx-auto bg-gray-800 border-2 border-brand-500 rounded-full flex items-center justify-center text-2xl font-bold mb-4 z-10 relative">
+          1
+        </div>
+        <!-- Connector Line (Desktop) -->
+        <div class="hidden md:block absolute top-8 left-1/2 w-full h-1 bg-gray-800 -z-0"></div>
+        <h4 class="text-xl font-bold mb-2">Tư Vấn</h4>
+        <p class="text-gray-400 text-sm">Trao đổi yêu cầu, thống nhất ý tưởng và báo giá chi tiết.</p>
+      </div>
+
+      <!-- Step 2 -->
+      <div class="text-center relative">
+        <div
+            class="w-16 h-16 mx-auto bg-gray-800 border-2 border-brand-500 rounded-full flex items-center justify-center text-2xl font-bold mb-4 z-10 relative">
+          2
+        </div>
+        <div class="hidden md:block absolute top-8 left-1/2 w-full h-1 bg-gray-800 -z-0"></div>
+        <h4 class="text-xl font-bold mb-2">Thiết Kế</h4>
+        <p class="text-gray-400 text-sm">Lên layout demo (Wireframe) và thiết kế giao diện UI.</p>
+      </div>
+
+      <!-- Step 3 -->
+      <div class="text-center relative">
+        <div
+            class="w-16 h-16 mx-auto bg-gray-800 border-2 border-brand-500 rounded-full flex items-center justify-center text-2xl font-bold mb-4 z-10 relative">
+          3
+        </div>
+        <div class="hidden md:block absolute top-8 left-1/2 w-full h-1 bg-gray-800 -z-0"></div>
+        <h4 class="text-xl font-bold mb-2">Lập Trình</h4>
+        <p class="text-gray-400 text-sm">Code tay (Hand-coding) để đảm bảo sạch sẽ và tối ưu nhất.</p>
+      </div>
+
+      <!-- Step 4 -->
+      <div class="text-center relative">
+        <div
+            class="w-16 h-16 mx-auto bg-brand-500 text-white rounded-full flex items-center justify-center text-2xl font-bold mb-4 z-10 relative shadow-[0_0_20px_rgba(14,165,233,0.5)]">
+          4
+        </div>
+        <h4 class="text-xl font-bold mb-2">Bàn Giao</h4>
+        <p class="text-gray-400 text-sm">Upload lên host/subdomain, hướng dẫn sử dụng và nghiệm thu.</p>
+      </div>
+    </div>
+  </div>
+</section>
+
+<!-- CONTACT SECTION -->
+<section id="lien-he" class="py-20 bg-brand-50">
+  <div class="max-w-4xl mx-auto px-4 sm:px-6 lg:px-8">
+    <div class="bg-white rounded-3xl shadow-xl overflow-hidden">
+      <div class="grid md:grid-cols-2">
+        <div class="p-10 bg-brand-500 text-white flex flex-col justify-between relative overflow-hidden">
+          <div class="relative z-10">
+            <h3 class="text-2xl font-bold mb-4">Bắt đầu dự án ngay</h3>
+            <p class="mb-8 opacity-90">Hãy để Hiếu iceTea Web Studio giúp bạn xây dựng hiện diện trực tuyến ấn
+              tượng.</p>
+
+            <div class="space-y-4">
+              <div class="flex items-center">
+                <i class="fa-solid fa-globe w-8 text-center"></i>
+                <span>web.hieu-icetea.com</span>
+              </div>
+              <div class="flex items-center">
+                <i class="fa-solid fa-envelope w-8 text-center"></i>
+                <span>contact@hieu-icetea.com</span>
+              </div>
+              <div class="flex items-center">
+                <i class="fa-brands fa-facebook w-8 text-center"></i>
+                <span>fb.com/hieuicetea</span>
+              </div>
+            </div>
+          </div>
+
+          <!-- Decoration circles -->
+          <div class="absolute bottom-0 right-0 -mb-10 -mr-10 w-40 h-40 bg-white opacity-10 rounded-full"></div>
+          <div class="absolute top-0 right-0 -mt-10 -mr-10 w-20 h-20 bg-white opacity-10 rounded-full"></div>
+        </div>
+
+        <div class="p-10">
+          <form onsubmit="event.preventDefault(); alert('Cảm ơn bạn đã liên hệ! Hiếu iceTea sẽ phản hồi sớm nhất.');"
+                class="space-y-4">
+            <div>
+              <label class="block text-sm font-medium text-gray-700 mb-1">Họ tên</label>
+              <input type="text"
+                     class="w-full px-4 py-2 border border-gray-300 rounded-lg focus:ring-2 focus:ring-brand-500 focus:border-transparent outline-none transition-all"
+                     placeholder="Nhập tên của bạn">
+            </div>
+            <div>
+              <label class="block text-sm font-medium text-gray-700 mb-1">Email / Số điện thoại</label>
+              <input type="text"
+                     class="w-full px-4 py-2 border border-gray-300 rounded-lg focus:ring-2 focus:ring-brand-500 focus:border-transparent outline-none transition-all"
+                     placeholder="Thông tin liên hệ">
+            </div>
+            <div>
+              <label class="block text-sm font-medium text-gray-700 mb-1">Nhu cầu</label>
+              <select
+                  class="w-full px-4 py-2 border border-gray-300 rounded-lg focus:ring-2 focus:ring-brand-500 focus:border-transparent outline-none transition-all">
+                <option>Làm Landing Page bán hàng</option>
+                <option>Làm Web One-Page cá nhân</option>
+                <option>Tư vấn giải pháp khác</option>
+              </select>
+            </div>
+            <div>
+              <label class="block text-sm font-medium text-gray-700 mb-1">Lời nhắn</label>
+              <textarea rows="3"
+                        class="w-full px-4 py-2 border border-gray-300 rounded-lg focus:ring-2 focus:ring-brand-500 focus:border-transparent outline-none transition-all"
+                        placeholder="Mô tả sơ qua ý tưởng của bạn..."></textarea>
+            </div>
+            <button type="submit"
+                    class="w-full bg-gray-900 text-white font-bold py-3 rounded-lg hover:bg-black transition-all transform hover:-translate-y-1 shadow-md">
+              Gửi Yêu Cầu Tư Vấn
+            </button>
+          </form>
+        </div>
+      </div>
+    </div>
+  </div>
+</section>
+
+<!-- FOOTER -->
+<footer class="bg-white border-t border-gray-100 pt-12 pb-8">
+  <div class="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8 flex flex-col md:flex-row justify-between items-center gap-6">
+    <div class="text-center md:text-left">
+      <div class="flex items-center justify-center md:justify-start gap-2 mb-2">
+        <div class="w-8 h-8 bg-brand-500 rounded-md flex items-center justify-center text-white font-bold text-sm">H
+        </div>
+        <span class="font-bold text-lg text-gray-900">Hiếu iceTea Web Studio</span>
+      </div>
+      <p class="text-gray-500 text-sm">Một sản phẩm thuộc hệ sinh thái hieu-icetea.com</p>
+    </div>
+
+    <div class="flex space-x-6">
+      <a href="#" class="text-gray-400 hover:text-brand-500 transition-colors"><i
+          class="fa-brands fa-facebook text-xl"></i></a>
+      <a href="#" class="text-gray-400 hover:text-brand-500 transition-colors"><i
+          class="fa-brands fa-github text-xl"></i></a>
+      <a href="#" class="text-gray-400 hover:text-brand-500 transition-colors"><i
+          class="fa-brands fa-linkedin text-xl"></i></a>
+    </div>
+  </div>
+  <div class="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8 mt-8 pt-8 border-t border-gray-50 text-center">
+    <p class="text-gray-400 text-sm">&copy; 2024 Hiếu iceTea Web Studio. All rights reserved.</p>
+  </div>
+</footer>
+
+<!-- Scripts: ĐÃ XÓA JS CŨ, LOGIC ĐƯỢC XỬ LÝ BỞI ALPINE.JS PHÍA TRÊN -->
+</body>
+</html>
