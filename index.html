@@ -260,12 +260,13 @@
 </section>
 
 <!-- ABOUT SECTION -->
-<section id="ve-chung-toi" class="py-20 bg-gray-50">
+<section id="ve-chung-toi" class="py-20 bg-gray-50 relative overflow-hidden">
   <div class="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8">
     <div class="lg:grid lg:grid-cols-2 lg:gap-16 items-center">
       <div class="mb-10 lg:mb-0">
-        <div class="relative">
-          <div class="absolute -inset-4 bg-brand-200 rounded-2xl transform rotate-2"></div>
+        <div class="relative group">
+          <div
+              class="absolute -inset-4 bg-gradient-to-r from-brand-200 to-indigo-200 rounded-2xl transform rotate-2 group-hover:rotate-1 transition-all duration-500"></div>
           <img
               src="https://images.unsplash.com/photo-1498050108023-c5249f4df085?ixlib=rb-4.0.3&auto=format&fit=crop&w=1472&q=80"
               alt="Coding Workspace" class="relative rounded-2xl shadow-xl w-full object-cover h-80 lg:h-auto">
@@ -306,6 +307,7 @@
       </div>
     </div>
   </div>
+  <div class="absolute bottom-0 left-0 w-full h-1 bg-gradient-to-r from-transparent via-brand-200 to-transparent"></div>
 </section>
 
 <!-- SERVICES SECTION -->
