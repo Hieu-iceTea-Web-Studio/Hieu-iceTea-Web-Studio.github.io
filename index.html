@@ -548,15 +548,20 @@
     const hiddenClasses = ['invisible', 'opacity-0', '-translate-y-2', 'scale-95'];
     const btnIconClasses = ['rotate-90', 'fa-bars', 'fa-xmark']; // thay đổi icon và tạo hiệu ứng xoay icon
 
-    btn.addEventListener('click', () => {
+    function toggleMobileMenu() {
         hiddenClasses.forEach(cls => menu.classList.toggle(cls));
         btnIconClasses.forEach(cls => btnIcon.classList.toggle(cls));
+        // document.body.classList.toggle('overflow-hidden'); // ngăn cuộn trang
+    }
+
+    btn.addEventListener('click', () => {
+        toggleMobileMenu()
     });
 
     // Close mobile menu when clicking a link
     menu.querySelectorAll('a').forEach(link => {
         link.addEventListener('click', () => {
-            hiddenClasses.forEach(cls => menu.classList.add(cls));
+            toggleMobileMenu()
         });
     });
 
